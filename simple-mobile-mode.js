@@ -1,30 +1,14 @@
-mobileStylesheetSource = "./css/mobile.css";
-
-function createMobileStylesheet(source) {
-    var head = document.querySelector("head");
-    var stylesheet = document.createElement("link");
-    stylesheet.setAttribute("id", "mobileStylesheet");
-    stylesheet.setAttribute("rel", "stylesheet");
-    stylesheet.setAttribute("href", source);
-    stylesheet.disabled = true;
-    head.appendChild(stylesheet);
-}
-
 function detectPortraitView() {
     // Create stylesheet if it does not already exist
-    var stylesheet = document.querySelector("head > #mobileStylesheet");
-    if (!stylesheet) {
-        createMobileStylesheet(mobileStylesheetSource);
-        stylesheet = document.querySelector("head > #mobileStylesheet");
+    var stylesheet = document.querySelector("head > link#mobileStylesheet");
+    if (stylesheet) {
+        // Enable/disable stylesheet depending on window proportions
+        width = window.innerWidth;
+        height = window.innerHeight;
+        // Disable stylesheet if window is not in portrait mode
+        portrait = (height > width || width < 700);
+        stylesheet.disabled = !portrait;
     }
-
-    // Enable/disable stylesheet depending on window proportions
-    width = window.innerWidth;
-    height = window.innerHeight;
-
-    // Disable stylesheet if window is not in portrait mode
-    portrait = (height > width || width < 700);
-    stylesheet.disabled = !portrait;
 }
 
 // Add listeners. Source: https://stackoverflow.com/a/4722710
