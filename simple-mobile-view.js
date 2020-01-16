@@ -29,7 +29,7 @@ function detectPortraitView() {
         width = window.innerWidth;
         height = window.innerHeight;
         // Disable stylesheet if window is not in portrait view
-        portrait = (height > width || width < 700);
+        portrait = (height > width && width < 500);
         stylesheet.disabled = !portrait;
     }
 }
