@@ -1,11 +1,10 @@
 function detectPortraitView() {
-    // Create stylesheet if it does not already exist
     var stylesheet = document.querySelector("head > link#mobileStylesheet");
     if (stylesheet) {
         // Enable/disable stylesheet depending on window proportions
         width = window.innerWidth;
         height = window.innerHeight;
-        // Disable stylesheet if window is not in portrait mode
+        // Disable stylesheet if window is not in portrait view
         portrait = (height > width || width < 700);
         stylesheet.disabled = !portrait;
     }
